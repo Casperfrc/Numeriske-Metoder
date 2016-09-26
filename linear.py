@@ -22,3 +22,6 @@ xAvg = sum(xValuesList)/n
 yAvg = sum(yValuesList)/n
 x2Sum = sum(x2ValuesList)
 xySum = sum(xyValuesList)
+
+a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
+b = yAvg - a*xAvg
