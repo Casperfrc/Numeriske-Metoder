@@ -25,3 +25,6 @@ xySum = sum(xyValuesList)
 
 a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
 b = yAvg - a*xAvg
+
+y = str(round(a,5))+"x + " + str(round(b,5))
+print("y =", y)
