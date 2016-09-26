@@ -9,6 +9,7 @@ yValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", yValue
 n = len(xValuesList)
 x2ValuesList = []
 xyValuesList = []
+coords = []
 
 for i in xValuesList:
     x2ValuesList.append(i**2)
@@ -25,6 +26,10 @@ xySum = sum(xyValuesList)
 
 a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
 b = yAvg - a*xAvg
-
 y = str(round(a,5))+"x + " + str(round(b,5))
 print("y =", y)
+
+q = 0
+while q < len(xValuesList):
+    coords.append((xValuesList[q], yValuesList[q]))
+    q += 1
