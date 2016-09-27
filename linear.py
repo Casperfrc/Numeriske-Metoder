@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+import numpy as np
 import re
 
 xValues = input("Hvad er dine x-værdier?: ")
@@ -9,7 +11,6 @@ yValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", yValue
 n = len(xValuesList)
 x2ValuesList = []
 xyValuesList = []
-coords = []
 
 for i in xValuesList:
     x2ValuesList.append(i**2)
@@ -26,10 +27,13 @@ xySum = sum(xyValuesList)
 
 a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
 b = yAvg - a*xAvg
-y = str(round(a,5))+"x + " + str(round(b,5))
-print("y =", y)
+x = np.arange(0, xValuesList[n-1]+5, 0.1)
+y = a*x + b
+print("y =", str(round(a,5))+"x + " + str(round(b,5)))
 
-q = 0
-while q < len(xValuesList):
-    coords.append((xValuesList[q], yValuesList[q]))
-    q += 1
+plt.xlim(xValuesList[0]-5, xValuesList[n-1]+5)
+plt.ylim(yValuesList[0]-5, yValuesList[n-1]+5)
+plt.grid(True)
+plt.plot(xValuesList, yValuesList, "ro")
+plt.plot(x, y)
+plt.show()
