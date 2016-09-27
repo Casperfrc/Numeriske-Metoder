@@ -1,3 +1,3 @@
-import linear.py
-import differentation.py
-import integration.py
+import linear
+import differentation
+import integration
