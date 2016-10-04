@@ -8,4 +8,9 @@ def getInputs():
     xInput = input("I hvilket punkt vil du finde hældningen? ")
     xmh = str(eval(xInput + "-" + hInput))
     xph = str(eval(xInput + "+" + hInput))
-    calc_stuff(eqInput, hInput, xInput, xmh, xph)
+    calcStuff(eqInput, hInput, xInput, xmh, xph)
+
+def calcStuff(eq, h, x0, xmh, xph):
+    fxmh = eval(eq.replace("x", xmh))
+    fxph = eval(eq.replace("x", xph))
+    fMark = (fxph - fxmh) / (2*(float(h)))
