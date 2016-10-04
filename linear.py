@@ -1,35 +1,48 @@
+import matplotlib.pyplot as plt
+import numpy as np
 import re
 
-xValues = input("Hvad er dine x-værdier?: ")
-xValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", xValues)]
+def run():
+    getCoords()
 
-yValues = input("Hvad er dine y-værdier?: ")
-yValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", yValues)]
+def getCoords():
+    xValues = input("Hvad er dine x-værdier?: ")
+    xValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", xValues)]
 
-n = len(xValuesList)
-x2ValuesList = []
-xyValuesList = []
-coords = []
+    yValues = input("Hvad er dine y-værdier?: ")
+    yValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", yValues)]
 
-for i in xValuesList:
-    x2ValuesList.append(i**2)
+    calculations(xValuesList, yValuesList)
 
-w = 0
-while w < len(xValuesList):
-    xyValuesList.append(xValuesList[w]*yValuesList[w])
-    w += 1
+def calcStuff(xList, yList):
+    n = len(xList)
+    x2ValuesList = []
+    xyValuesList = []
 
-xAvg = sum(xValuesList)/n
-yAvg = sum(yValuesList)/n
-x2Sum = sum(x2ValuesList)
-xySum = sum(xyValuesList)
+    for i in xList:
+        x2ValuesList.append(i**2)
 
-a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
-b = yAvg - a*xAvg
-y = str(round(a,5))+"x + " + str(round(b,5))
-print("y =", y)
+    i = 0
+    while i < len(xList):
+        xyValuesList.append(xList[i]*yList[i])
+        i += 1
 
-q = 0
-while q < len(xValuesList):
-    coords.append((xValuesList[q], yValuesList[q]))
-    q += 1
+    xAvg = sum(xList)/n
+    yAvg = sum(yList)/n
+    x2Sum = sum(x2ValuesList)
+    xySum = sum(xyValuesList)
+
+    a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
+    b = yAvg - a*xAvg
+    x = np.arange(0, xList[n-1]+5, 0.1)
+    y = a*x + b
+    print("y =", str(round(a,5))+"x +", str(round(b,5)))
+    plotGraph(xList,yList,x,y,n)
+
+def plotGraph(xList,yList,x,y,n):
+    plt.xlim(xList[0]-5, xList[n-1]+5)
+    plt.ylim(yList[0]-5, yList[n-1]+5)
+    plt.grid(True)
+    plt.plot(xList, yList, "ro")
+    plt.plot(x, y)
+    plt.show()
