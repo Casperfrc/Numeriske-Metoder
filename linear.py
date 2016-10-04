@@ -12,7 +12,7 @@ def getCoords():
     yValues = input("Hvad er dine y-værdier?: ")
     yValuesList = [float(s) for s in re.findall(r"[-+]*\d*\.\d+|[-+]?\d*\d+", yValues)]
 
-    calculations(xValuesList, yValuesList)
+    calcStuff(xValuesList, yValuesList)
 
 def calcStuff(xList, yList):
     n = len(xList)
