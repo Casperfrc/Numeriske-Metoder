@@ -34,7 +34,7 @@ def calcStuff(xList, yList):
 
     a = (xySum - n*xAvg*yAvg)/(x2Sum - n*xAvg**2)
     b = yAvg - a*xAvg
-    x = np.arange(0, xList[n-1]+5, 0.1)
+    x = np.arange(xList[0]-5, xList[n-1]+5, 0.1)
     y = a*x + b
     print("y =", str(round(a,5))+"x +", str(round(b,5)))
     plotGraph(xList,yList,x,y,n)
